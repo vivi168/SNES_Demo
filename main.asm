@@ -4,7 +4,7 @@
 .include "header.inc"
 .include "init.asm"
 
-; Needed to satisfy interrupt definition in "Header.inc".
+; Needed to satisfy interrupt definition in "header.inc".
 VBlank:
         rti
 
@@ -12,9 +12,10 @@ VBlank:
 .section "MainCode"
 
 Start:
-; Initialize the SNES.
-jsr Snes_Init
-; Set the background color to green.
+        ; Initialize the SNES.
+        jsr Snes_Init
+
+        ; Set the background color to green.
         sep     #$20    ; Set the A register to 8-bit.
         lda     #$80    ; Force VBlank by turning off the screen.
         sta     $2100
@@ -27,7 +28,6 @@ jsr Snes_Init
 
 ; Loop forever.
 Forever:
-jmp Forever
+        jmp Forever
 
 .ends
-
